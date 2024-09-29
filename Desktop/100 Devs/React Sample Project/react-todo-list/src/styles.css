@@ -4,8 +4,8 @@
 }
 
 body {
-    background: #333;
-    color: hsl(200, 100%, 90%);
+    background: white;
+    color: black;
     max-width: 400px;
     padding: 1rem;
     margin: 0 auto;

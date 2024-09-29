@@ -3,7 +3,7 @@ import { NewTodoForm } from "./NewTodoForm"
 import "./styles.css"
 import { Todolist } from "./Todolist"
 
-export default function App() {
+export default function App() { //this is a component
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("ITEMS")
     if (localValue === null) return []
