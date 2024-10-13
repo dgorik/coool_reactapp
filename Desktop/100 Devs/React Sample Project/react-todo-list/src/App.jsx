@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { NewTodoForm } from "./NewTodoForm"
 import "./styles.css"
 import { Todolist } from "./Todolist"
@@ -6,15 +6,14 @@ import { Todolist } from "./Todolist"
 export default function App() {
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("ITEMS")
-
     if (localValue === null) return []
 
     return JSON.parse(localValue)
   })
 
-  // useEffect(() => {
-  //   localStorage.setItem("ITEMS", JSON.stringify(todos))
-  // }, [todos])
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos))
+  }, [todos])
 
   function addTodo(title) {
     setTodos(currentTodos => {
@@ -27,14 +26,12 @@ export default function App() {
       ]
     })
 
-    setNewitem("")
-
   }
 
   function toggleTodo(id, completed) {
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
-        if (todo.is === id) {
+        if (todo.id === id) {
           return { ...todo, completed }
         }
         return todo
@@ -51,7 +48,7 @@ export default function App() {
     <>
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo List </h1>
-      <Todolist todos={todos} />
+      <Todolist todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </>
   )
 
